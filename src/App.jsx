@@ -4,9 +4,11 @@ import Home from "./pages/Home";
 const App = () => {
   return (
     <BrowserRouter>
-      <Routes>
-        <Route index element={<Home />} />
-      </Routes>
+      <div className="bg-[#6F96D1] bg-gradient-to-b from-[#6F96D1] to-[#091F5B]">
+        <Routes>
+          <Route index element={<Home />} />
+        </Routes>
+      </div>
     </BrowserRouter>
   );
 };
