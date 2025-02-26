@@ -19,6 +19,7 @@ const Home = () => {
         </p>
         <div className="mt-5 flex flex-col h-fit items-center md:justify-center md:flex-row w-fit gap-2">
           <Link
+            to="/general"
             aria-label="Link to documentation page"
             className="bg-neutral-100 text-black w-fit h-full border-2 border-neutral-100 hover:border-neutral-100/70 hover:bg-neutral-100/70 transition duration-500 hover:ease-in-out px-3 py-2 rounded-md font-primary"
           >
