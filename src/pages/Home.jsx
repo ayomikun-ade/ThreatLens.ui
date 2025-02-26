@@ -3,7 +3,7 @@ import Header from "../components/Header";
 
 const Home = () => {
   return (
-    <div className="px-10 w-full min-h-screen flex flex-col justify-center items-center">
+    <div className="px-4 md:px-10 w-full min-h-screen flex flex-col justify-center items-center">
       <Header />
       <main className="flex flex-col text-white animate-fadeIn justify-center items-center max-w-[700px] text-center">
         <h1 className="font-main text-white font-semibold text-4xl md:text-5xl">
@@ -13,18 +13,22 @@ const Home = () => {
           Upgrade your threat intelligence with ThreatLens, the AI-driven
           chatbot that predicts and analyzes social engineering threats.
         </p>
+        <p className="font-primary text-base md:text-lg mt-1">
+          Two main features available: <br /> General Cybersecurity Knowledge &
+          Social Engineering Prediction
+        </p>
         <div className="mt-5 flex flex-col h-fit items-center md:justify-center md:flex-row w-fit gap-2">
           <Link
             aria-label="Link to documentation page"
             className="bg-neutral-100 text-black w-fit h-full border-2 border-neutral-100 hover:border-neutral-100/70 hover:bg-neutral-100/70 transition duration-500 hover:ease-in-out px-3 py-2 rounded-md font-primary"
           >
-            Get Started
+            General Cyber Enquiries
           </Link>
           <Link
             aria-label="Link to key points page"
             className="border-2 border-neutral-100 text-white hover:bg-neutral-100 hover:text-black w-full md:w-fit h-full transition duration-500 hover:ease-in-out px-3 py-2 rounded-md font-primary"
           >
-            Try Now
+            S.E. Prediction
           </Link>
         </div>
       </main>
