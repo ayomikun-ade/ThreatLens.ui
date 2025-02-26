@@ -5,7 +5,7 @@ export default {
     fontFamily: {
       main: ['"Aqua Grotesque"'],
       logo: ["Cookie"],
-      primary: ["Poppins"],
+      primary: ["Poppins, sans-serif"],
       head: ["Charm"],
     },
     extend: {},
