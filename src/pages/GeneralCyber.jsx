@@ -4,6 +4,7 @@ import Disclaimer from "../components/Disclaimer";
 import { toast, ToastContainer } from "react-toastify";
 import axios from "axios";
 import ReactMarkdown from "react-markdown";
+import { Link } from "react-router-dom";
 
 const GeneralCyber = () => {
   const [inputText, setInputText] = useState("");
@@ -62,12 +63,68 @@ const GeneralCyber = () => {
     }
   };
 
+  const handleClearAll = () => {
+    toast.info(
+      <div>
+        <p>Are you sure you want to clear chats?</p>
+        <button
+          onClick={clearChatHistory}
+          className="bg-red-500 hover:bg-red-700 text-white px-3 py-1 rounded-md mt-2"
+        >
+          Confirm
+        </button>
+      </div>,
+      { autoClose: false, theme: "dark", role: "status" }
+    );
+  };
+
+  const clearChatHistory = () => {
+    setChatHistory([]);
+    localStorage.removeItem("chatHistory");
+    toast.dismiss();
+  };
+
   return (
     <>
       <ToastContainer theme="dark" autoClose="3000" />
       <div className="px-3 md:px-10 w-full min-h-screen font-primary flex flex-col justify-center items-center">
         <Header />
         <section className="relative max-w-[950px] h-[85vh] md:h-[80vh] w-full animate-fadeIn flex flex-col justify-between shadow-lg bg-white rounded-lg text-black mt-20 mb-6 md:mb-0 md:mt-5 px-3 md:px-6 pt-8 pb-5">
+          {/* Box Header section */}
+          {chatHistory.length > 0 && (
+            <div className="absolute top-2 right-3 left-3 flex justify-between items-center">
+              <div className="flex gap-1 items-center">
+                <Link
+                  to="/"
+                  aria-label="Home button"
+                  className="hover:scale-110 transition duration-300 hover:ease-in-out"
+                >
+                  <ion-icon
+                    className="text-2xl"
+                    aria-hidden="true"
+                    name="arrow-back-outline"
+                  ></ion-icon>
+                </Link>
+                <h3 className="font-semibold flex items-center gap-1 font-main text-2xl tracking-normal ml-2">
+                  General Chat
+                </h3>
+              </div>
+              <button
+                aria-label="Clear chats button"
+                onClick={handleClearAll}
+                className="hover:scale-105 top-2 right-3 text-red-600 rounded-lg px-2 py-1 transition duration-300 hover:ease-in-out"
+              >
+                {" "}
+                <ion-icon
+                  // size="large"
+                  className="text-2xl md:text-3xl"
+                  aria-hidden="true"
+                  name="trash-bin"
+                ></ion-icon>
+                <span className="sr-only">Clear Chat</span>
+              </button>
+            </div>
+          )}
           {chatHistory.length > 0 && (
             <section
               ref={chatRef}
