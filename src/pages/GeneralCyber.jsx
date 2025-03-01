@@ -44,7 +44,7 @@ const GeneralCyber = () => {
     try {
       console.log(inputText);
       const response = await axios.post(
-        "http://localhost:8000/general-question",
+        "https://threat-leans-be.vercel.app/general-question",
         {
           question: inputText,
         }
