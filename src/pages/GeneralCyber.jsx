@@ -81,6 +81,11 @@ const GeneralCyber = () => {
                     msg.sender === "user" ? "items-end" : "items-start"
                   }`}
                 >
+                  {/* {msg.sender == "bot" ? (
+                    <ion-icon name="laptop-outline"></ion-icon>
+                  ) : (
+                    <ion-icon name="person-outline"></ion-icon>
+                  )} */}
                   <div
                     className={`px-3 py-2 w-[90%] md:w-[70%] animate-textIn shadow-md rounded-lg mb-2 ${
                       msg.sender === "user"
