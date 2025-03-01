@@ -8,6 +8,7 @@ import { Link } from "react-router-dom";
 
 const GeneralCyber = () => {
   const [inputText, setInputText] = useState("");
+  const [isProcessing, setIsProcessing] = useState(false);
   const [chatHistory, setChatHistory] = useState(() => {
     const storedHistory = localStorage.getItem("chatHistory");
     return storedHistory ? JSON.parse(storedHistory) : [];
@@ -40,9 +41,12 @@ const GeneralCyber = () => {
       text: inputText,
       sender: "user",
     };
+
     setChatHistory((prev) => [...prev, userMessage]);
     setInputText("");
+
     try {
+      setIsProcessing(true);
       console.log(inputText);
       const response = await axios.post(
         "https://threat-leans-be.vercel.app/general-question",
@@ -60,6 +64,8 @@ const GeneralCyber = () => {
     } catch (error) {
       console.error("Error:", error);
       toast.error("Error communicating with the server.");
+    } finally {
+      setIsProcessing(false);
     }
   };
 
@@ -154,6 +160,16 @@ const GeneralCyber = () => {
                   </div>
                 </div>
               ))}
+              {isProcessing && (
+                <span className="w-fit mb-2 flex items-center">
+                  <img
+                    src="/loading.svg"
+                    className="text-black animate-spin mr-1 w-5 h-5"
+                    alt="loading image"
+                  />
+                  Processing...
+                </span>
+              )}
             </section>
           )}
           <section className="space-y-2">
@@ -169,7 +185,7 @@ const GeneralCyber = () => {
               ></textarea>
               <button
                 onClick={handleSendMessage}
-                // disabled={isProcessing || isTranslating}
+                disabled={isProcessing}
                 className="text-2xl hover:text-blue-700 disabled:cursor-not-allowed disabled:opacity-70 transition duration-300 hover:ease-in-out"
                 aria-label="Send message"
               >
