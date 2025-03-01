@@ -5,6 +5,7 @@ import { toast, ToastContainer } from "react-toastify";
 import axios from "axios";
 import ReactMarkdown from "react-markdown";
 import { Link } from "react-router-dom";
+import Welcome from "../components/Welcome";
 
 const GeneralCyber = () => {
   const [inputText, setInputText] = useState("");
@@ -131,7 +132,7 @@ const GeneralCyber = () => {
               </button>
             </div>
           )}
-          {chatHistory.length > 0 && (
+          {chatHistory.length > 0 ? (
             <section
               ref={chatRef}
               aria-live="polite"
@@ -171,6 +172,8 @@ const GeneralCyber = () => {
                 </span>
               )}
             </section>
+          ) : (
+            <Welcome />
           )}
           <section className="space-y-2">
             <div className="has-[:focus]:border-neutral-900 w-full border-2 shadow-md border-neutral-300 flex items-end rounded-xl p-2 gap-2">
