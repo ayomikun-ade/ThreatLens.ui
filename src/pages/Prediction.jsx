@@ -1,34 +1,37 @@
+// import axios from "axios";
 import { useEffect, useRef, useState } from "react";
-import Header from "../components/Header";
-import Disclaimer from "../components/Disclaimer";
 import { toast, ToastContainer } from "react-toastify";
-import axios from "axios";
-import ReactMarkdown from "react-markdown";
+import Header from "../components/Header";
 import { Link } from "react-router-dom";
 import Welcome from "../components/Welcome";
+import Disclaimer from "../components/Disclaimer";
+import ReactMarkdown from "react-markdown";
 
-const GeneralCyber = () => {
+const Prediction = () => {
   const [inputText, setInputText] = useState("");
   const [isProcessing, setIsProcessing] = useState(false);
-  const [chatHistory, setChatHistory] = useState(() => {
-    const storedHistory = localStorage.getItem("chatHistory");
+  const [predictionHistory, setPredictionHistory] = useState(() => {
+    const storedHistory = localStorage.getItem("predictionHistory");
     return storedHistory ? JSON.parse(storedHistory) : [];
   });
   const chatRef = useRef(null);
 
   useEffect(() => {
-    localStorage.setItem("chatHistory", JSON.stringify(chatHistory));
-  }, [chatHistory]);
+    localStorage.setItem(
+      "predictionHistory",
+      JSON.stringify(predictionHistory)
+    );
+  }, [predictionHistory]);
 
   useEffect(() => {
     if (chatRef.current) {
       chatRef.current.scrollTop = chatRef.current.scrollHeight;
     }
-  }, [chatHistory]);
+  }, [predictionHistory]);
 
   const handleKeyDown = (e) => {
     if (e.key === "Enter" && !e.shiftKey) {
-      e.preventDefault(); // Prevent adding a new line in the textarea
+      e.preventDefault();
       handleSendMessage();
     }
   };
@@ -43,31 +46,31 @@ const GeneralCyber = () => {
       sender: "user",
     };
 
-    setChatHistory((prev) => [...prev, userMessage]);
+    setPredictionHistory((prev) => [...prev, userMessage]);
     setInputText("");
 
-    try {
-      setIsProcessing(true);
-      console.log(inputText);
-      const response = await axios.post(
-        "https://threat-leans-be.vercel.app/general-question",
-        {
-          question: inputText,
-        }
-      );
+    //   try {
+    //     setIsProcessing(true);
+    //     console.log(inputText);
+    //     const response = await axios.post(
+    //       "https://threat-leans-be.vercel.app/general-question",
+    //       {
+    //         question: inputText,
+    //       }
+    //     );
 
-      const botMessage = {
-        text: response.data.answer,
-        sender: "bot",
-      };
+    //     const botMessage = {
+    //       text: response.data.answer,
+    //       sender: "bot",
+    //     };
 
-      setChatHistory((prev) => [...prev, botMessage]);
-    } catch (error) {
-      console.error("Error:", error);
-      toast.error("Error communicating with the server.");
-    } finally {
-      setIsProcessing(false);
-    }
+    //     setPredictionHistory((prev) => [...prev, botMessage]);
+    //   } catch (error) {
+    //     console.error("Error:", error);
+    //     toast.error("Error communicating with the server.");
+    //   } finally {
+    //     setIsProcessing(false);
+    //   }
   };
 
   const handleClearAll = () => {
@@ -75,7 +78,7 @@ const GeneralCyber = () => {
       <div>
         <p>Are you sure you want to clear chats?</p>
         <button
-          onClick={clearChatHistory}
+          onClick={clearPredictionHistory}
           className="bg-red-500 hover:bg-red-700 text-white px-3 py-1 rounded-md mt-2"
         >
           Confirm
@@ -85,9 +88,9 @@ const GeneralCyber = () => {
     );
   };
 
-  const clearChatHistory = () => {
-    setChatHistory([]);
-    localStorage.removeItem("chatHistory");
+  const clearPredictionHistory = () => {
+    setPredictionHistory([]);
+    localStorage.removeItem("predictionHistory");
     toast.dismiss();
   };
 
@@ -98,7 +101,7 @@ const GeneralCyber = () => {
         <Header />
         <section className="relative max-w-[950px] h-[85vh] md:h-[80vh] w-full animate-fadeIn flex flex-col justify-between shadow-lg bg-white rounded-lg text-black mt-20 mb-6 md:mb-0 md:mt-5 px-3 md:px-6 pt-8 pb-5">
           {/* Box Header section */}
-          {chatHistory.length > 0 && (
+          {predictionHistory.length > 0 && (
             <div className="absolute top-2 right-3 left-3 flex justify-between items-center">
               <div className="flex gap-1 items-center">
                 <Link
@@ -113,7 +116,7 @@ const GeneralCyber = () => {
                   ></ion-icon>
                 </Link>
                 <h3 className="font-semibold flex items-center gap-1 font-main text-2xl tracking-normal ml-2">
-                  General Chat
+                  S.E Predictor
                 </h3>
               </div>
               <button
@@ -132,13 +135,13 @@ const GeneralCyber = () => {
               </button>
             </div>
           )}
-          {chatHistory.length > 0 ? (
+          {predictionHistory.length > 0 ? (
             <section
               ref={chatRef}
               aria-live="polite"
               className="overflow-y-auto scroll-smooth text-sm md:text-base mt-8 px-1 rounded-md overflow-x-hidden"
             >
-              {chatHistory.map((msg, index) => (
+              {predictionHistory.map((msg, index) => (
                 <div
                   key={index}
                   className={`flex flex-col mb-3 ${
@@ -148,8 +151,8 @@ const GeneralCyber = () => {
                   <div
                     className={`px-3 py-2 w-[90%] md:w-[70%] animate-textIn shadow-md rounded-lg mb-2 ${
                       msg.sender === "user"
-                        ? "bg-[#6F96D1] text-white"
-                        : "bg-neutral-200 text-black"
+                        ? "bg-[#1d40a bg-slate-500 text-white"
+                        : "bg-black text-white"
                     }`}
                   >
                     <ReactMarkdown>{msg.text}</ReactMarkdown>
@@ -169,8 +172,8 @@ const GeneralCyber = () => {
             </section>
           ) : (
             <Welcome
-              feature={"General Enquires"}
-              subtitle={"You Personal Cybersecurity Assistant"}
+              feature={"Prediction"}
+              subtitle={"Your Personal Social Engineering Attack Predictor"}
             />
           )}
           <section className="space-y-2">
@@ -201,4 +204,4 @@ const GeneralCyber = () => {
   );
 };
 
-export default GeneralCyber;
+export default Prediction;

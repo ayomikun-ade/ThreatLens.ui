@@ -1,6 +1,7 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
 import GeneralCyber from "./pages/GeneralCyber";
+import Prediction from "./pages/Prediction";
 
 const App = () => {
   return (
@@ -9,6 +10,7 @@ const App = () => {
         <Routes>
           <Route index element={<Home />} />
           <Route path="/general" element={<GeneralCyber />} />
+          <Route path="/prediction" element={<Prediction />} />
         </Routes>
       </div>
     </BrowserRouter>

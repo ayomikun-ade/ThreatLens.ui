@@ -1,12 +1,10 @@
-const Welcome = () => {
+const Welcome = ({ feature, subtitle }) => {
   return (
     <div className="text-black text-center animate-textIn flex flex-col justify-center items-center mb-5 w-full h-full">
       <h2 className="font-main text-3xl md:text-5xl font-semibold ">
-        Welcome to ThreatLens
+        Welcome to {feature}
       </h2>
-      <p className="text-neutral-700 text-base md:text-lg mb-2">
-        You personal Cybersecurity assistant
-      </p>
+      <p className="text-neutral-700 text-base md:text-lg mb-2">{subtitle}</p>
       {/* <img src="/hand-wave.svg" className="w-40 h-40" alt="hand waving" /> */}
       <span className="w-28 h-28 md:w-40 md:h-40" aria-label="a waving hand">
         <svg

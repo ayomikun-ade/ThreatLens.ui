@@ -26,6 +26,7 @@ const Home = () => {
             General Cyber Enquiries
           </Link>
           <Link
+            to="/prediction"
             aria-label="Link to key points page"
             className="border-2 border-neutral-100 text-white hover:bg-neutral-100 hover:text-black w-full md:w-fit h-full transition duration-500 hover:ease-in-out px-3 py-2 rounded-md font-primary"
           >
