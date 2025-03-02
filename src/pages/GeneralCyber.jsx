@@ -50,7 +50,7 @@ const GeneralCyber = () => {
       setIsProcessing(true);
       console.log(inputText);
       const response = await axios.post(
-        "https://threat-leans-be.vercel.app/general-question",
+        "https://threat-leans-be.vercel.app/api/general-question",
         {
           question: inputText,
         }

@@ -1,4 +1,4 @@
-// import axios from "axios";
+import axios from "axios";
 import { useEffect, useRef, useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
 import Header from "../components/Header";
@@ -49,28 +49,28 @@ const Prediction = () => {
     setPredictionHistory((prev) => [...prev, userMessage]);
     setInputText("");
 
-    //   try {
-    //     setIsProcessing(true);
-    //     console.log(inputText);
-    //     const response = await axios.post(
-    //       "https://threat-leans-be.vercel.app/general-question",
-    //       {
-    //         question: inputText,
-    //       }
-    //     );
+    try {
+      setIsProcessing(true);
+      console.log(inputText);
+      const response = await axios.post(
+        "https://threat-leans-be.vercel.app/api/prediction",
+        {
+          message: inputText,
+        }
+      );
 
-    //     const botMessage = {
-    //       text: response.data.answer,
-    //       sender: "bot",
-    //     };
+      const botMessage = {
+        text: response.data.verdict,
+        sender: "bot",
+      };
 
-    //     setPredictionHistory((prev) => [...prev, botMessage]);
-    //   } catch (error) {
-    //     console.error("Error:", error);
-    //     toast.error("Error communicating with the server.");
-    //   } finally {
-    //     setIsProcessing(false);
-    //   }
+      setPredictionHistory((prev) => [...prev, botMessage]);
+    } catch (error) {
+      console.error("Error:", error);
+      toast.error("Error communicating with the server.");
+    } finally {
+      setIsProcessing(false);
+    }
   };
 
   const handleClearAll = () => {
