@@ -151,8 +151,8 @@ const Prediction = () => {
                   <div
                     className={`px-3 py-2 w-[90%] md:w-[70%] animate-textIn shadow-md rounded-lg mb-2 ${
                       msg.sender === "user"
-                        ? "bg-[#1d40a bg-slate-500 text-white"
-                        : "bg-black text-white"
+                        ? "bg-[#1d40a bg-[#33508C] text-white"
+                        : "bg-neutral-900 text-white"
                     }`}
                   >
                     <ReactMarkdown>{msg.text}</ReactMarkdown>
