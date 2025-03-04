@@ -23,26 +23,12 @@ const Home = () => {
           Upgrade your threat intelligence with ThreatLens, the AI-driven
           chatbot that predicts and analyzes social engineering threats.
         </p>
-        {/* <p className="font-primary text-base md:text-lg mt-1">
-          Two main features available: <br /> General Cybersecurity Knowledge &
-          Social Engineering Prediction
-        </p> */}
-        <div className="mt-5 flex flex-col h-fit items-center md:justify-center md:flex-row w-fit gap-2">
-          <Link
-            to="/general"
-            aria-label="Link to documentation page"
-            className="bg-neutral-100 text-black w-fit h-full border-2 border-neutral-100 hover:border-neutral-100/70 hover:bg-neutral-100/70 transition duration-500 hover:ease-in-out px-3 py-2 rounded-md font-primary"
-          >
-            Cybersecurity Assistant
-          </Link>
-          <Link
-            to="/prediction"
-            aria-label="Link to key points page"
-            className="border-2 border-neutral-100 text-white hover:bg-neutral-100 hover:text-black w-full md:w-fit h-full transition duration-500 hover:ease-in-out px-3 py-2 rounded-md font-primary"
-          >
-            S.E. Predictor
-          </Link>
-        </div>
+        <Link
+          to="/about"
+          className="bg-neutral-100 text-black w-fit h-full border-2 border-neutral-100 hover:border-neutral-100/70 hover:bg-neutral-100/70 transition duration-500 hover:ease-in-out px-3 py-1 mt-3 rounded-md font-primary"
+        >
+          Get Started
+        </Link>
       </main>
     </div>
   );
