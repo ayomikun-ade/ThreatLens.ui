@@ -12,23 +12,22 @@ const Header = () => {
           ThreatLens
         </Link>
       </h2>
-      <div className="flex items-center gap-2">
+      <div className="flex items-center gap-3 md:gap-4">
         <Link
           to="/about"
-          target="_blank"
           aria-label="link to about page"
           className="text-lg md:text-xl uppercase text-white hover:scale-105 transition duration-300 hover:ease-in-out"
         >
           About
         </Link>
-        <Link
+        {/* <Link
           to="https://www.github.com/ayomikun-ade/ThreatLens"
           target="_blank"
           aria-label="link to github repository of website"
-          className="text-5xl hover:text-neutral-100 transition duration-300 hover:ease-in-out"
+          className="text-4xl md:text-5xl hover:text-neutral-100 transition duration-300 hover:ease-in-out"
         >
           <ion-icon aria-hidden="true" name="logo-github"></ion-icon>
-        </Link>
+        </Link> */}
       </div>
     </header>
   );

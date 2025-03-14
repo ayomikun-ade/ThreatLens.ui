@@ -59,7 +59,7 @@ const About = () => {
               of threat analysis.
             </p>
           </section>
-          <div className="mt-5 flex flex-col h-fit items-center md:justify-center md:flex-row w-fit gap-2">
+          <div className="mt-5 flex flex-col text-center h-fit items-center md:justify-center md:flex-row w-fit gap-2">
             <Link
               to="/general"
               aria-label="Link to documentation page"
